@@ -177,4 +177,4 @@ MIT / BSD
 
 ## Author Information
 
-This playbook was modified for ITG organization purposes, from Ansible Galaxy original author [Jeff Geerling](http://jeffgeerling.com).
+This playbook was modified for personal purposes, from Ansible Galaxy original author [Jeff Geerling](http://jeffgeerling.com).
