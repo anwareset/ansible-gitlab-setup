@@ -1,5 +1,5 @@
 # General Configuration
-gitlab_domain: frontend1.42c7.example.opentlc.com
+gitlab_domain: frontend1.42c7.internal
 gitlab_external_url: "https://{{ gitlab_domain }}/"
 gitlab_git_data_dir: "/var/opt/gitlab/git-data"
 gitlab_edition: "gitlab-ce"
