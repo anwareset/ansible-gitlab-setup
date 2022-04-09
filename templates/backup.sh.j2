@@ -1,0 +1,30 @@
+#!/bin/bash
+
+d=`date "+%F-%H%M%S"`
+path_secret='{{ gitlab_backup_secret_path }}'
+bin='{{ gitlab_bin_path }}'
+
+
+logger -s "Backuping gitlab data"
+sleep 1
+
+        $bin/gitlab-backup create CRON=1
+
+logger -s "Backup Done"
+sleep 1
+logger -s "Backuping gitlab config"
+sleep 1
+
+        $bin/gitlab-ctl backup-etc $path_secret
+
+logger -s "Backup Done"
+sleep 1
+logger -s "Send Email Backup alert"
+sleep 1
+
+echo "Gitlab Backup Data Is success" | mailx -v -s "Notification Backup Daily Gitlab" -S smtp="{{ gitlab_backup_smtp_host }}:{{ gitlab_backup_smtp_port }}" "{{ gitlab_backup_receiver_email }}"
+
+logger -s "Sent"
+logger -s "Deleting backup file more than 30 days"
+
+        find $path_secret -type f -mtime +30 -exec rm -rf {} +

@@ -1,0 +1,26 @@
+[gitlab]
+frontend1.42c7.internal
+
+[ldap]
+app2.42c7.internal
+
+[runner]
+app1.42c7.internal
+
+[postgresql]
+appdb1.42c7.internal
+
+[bastion]
+bastion.42c7.internal
+
+[threetierapp:children]
+gitlab
+ldap
+runner
+postgresql
+bastion
+
+[threetierapp:vars]
+timeout=60
+ansible_user=devops
+ansible_ssh_common_args="-o StrictHostKeyChecking=no"

@@ -1,0 +1,109 @@
+# General Configuration
+gitlab_domain: bastion.42c7.example.opentlc.com
+gitlab_external_url: "https://{{ gitlab_domain }}/"
+gitlab_git_data_dir: "/var/opt/gitlab/git-data"
+gitlab_edition: "gitlab-ce"
+gitlab_version: ''
+gitlab_install_timeout: 1000
+gitlab_config_template: "gitlab.rb.j2"
+gitlab_monitoring_whitelist: "['127.0.0.0/8', '::1/128']"
+
+# Dependencies
+gitlab_dependencies:
+  - openssh-server
+  - postfix
+  - curl
+  - openssl
+  - tzdata
+  - perl
+
+# Database Configuration
+postgresql_enable: true
+postgresql_host: "appdb1.42c7.internal"
+postgresql_port: 5432
+postgresql_username: "git"
+postgresql_password: "itg"
+
+# LDAP Configuration
+gitlab_ldap_enabled: true
+gitlab_ldap_host: "app1.42c7.internal"
+gitlab_ldap_port: 389
+gitlab_ldap_uid: "uid"
+gitlab_ldap_encryption: "plain"
+gitlab_ldap_verify_certificates: false
+gitlab_ldap_bind_dn: "CN=admin,DC=42c7,DC=internal"
+gitlab_ldap_password: "11211111"
+gitlab_ldap_active_directory: ""
+gitlab_ldap_base: "DC=42c7,DC=internal"
+gitlab_ldap_user_filter: ""
+gitlab_ldap_lowercase_username: false
+gitlab_ldap_allow_email: true
+
+# SSL Configuration
+gitlab_redirect_http_to_https: true
+gitlab_ssl_certificate: "/etc/gitlab/ssl/{{ gitlab_domain }}.crt"
+gitlab_ssl_certificate_key: "/etc/gitlab/ssl/{{ gitlab_domain }}.key"
+gitlab_ssl_protocols: "TLSv1.1 TLSv1.2"
+
+# SSL Self-signed Certificate Configuration
+gitlab_create_self_signed_cert: true
+gitlab_self_signed_cert_subj: "/C=ID/ST=Jakarta/L=South Jakarta/O=ITG/CN={{ gitlab_domain }}"
+
+# LetsEncrypt configuration
+gitlab_letsencrypt_enable: false
+gitlab_letsencrypt_contact_emails: ["gitlab@example.com"]
+gitlab_letsencrypt_auto_renew_hour: 1
+gitlab_letsencrypt_auto_renew_minute: 30
+gitlab_letsencrypt_auto_renew_day_of_month: "*/7"
+gitlab_letsencrypt_auto_renew: true
+
+# 2-way SSL Client Authentication support.
+gitlab_nginx_ssl_verify_client: ""
+gitlab_nginx_ssl_client_certificate: ""
+
+
+# SMTP Configuration
+gitlab_smtp_enable: false
+gitlab_smtp_address: "smtp.server"
+gitlab_smtp_port: 465
+gitlab_smtp_user_name: "smtp user"
+gitlab_smtp_password: "smtp password"
+gitlab_smtp_domain: "example.com"
+gitlab_smtp_authentication: "login"
+gitlab_smtp_enable_starttls_auto: true
+gitlab_smtp_tls: false
+gitlab_smtp_openssl_verify_mode: "none"
+gitlab_smtp_ca_path: "/etc/ssl/certs"
+gitlab_smtp_ca_file: "/etc/ssl/certs/ca-certificates.crt"
+
+# Email configuration
+gitlab_email_enabled: false
+gitlab_email_from: "gitlab@example.com"
+gitlab_email_display_name: "Gitlab"
+gitlab_email_reply_to: "gitlab@example.com"
+
+# Backup Configuration
+gitlab_backup_upload_connection_provider: "Local" 
+gitlab_backup_upload_connection_local_root: "/mnt/backup/gitlab/data" 
+gitlab_backup_path: "/mnt/backup/gitlab"
+gitlab_backup_secret_path: "/mnt/backup/gitlab/secret"
+gitlab_bin_path: "/usr/bin"
+gitlab_backup_smtp_host: "smtp.itgroupinc.asia"
+gitlab_backup_smtp_port: 25
+gitlab_backup_receiver_email: "tri.anwaruddin@itgroupinc.asia"
+gitlab_backup_script_template: "backup.sh.j2"
+
+# Probably best to leave this as the default, unless doing testing.
+gitlab_restart_handler_failed_when: 'gitlab_restart.rc != 0'
+
+# Optional settings
+gitlab_time_zone: "Asia/Jakarta"
+gitlab_backup_keep_time: "604800"
+gitlab_download_validate_certs: true
+gitlab_default_theme: '2'
+
+# Registry configuration
+gitlab_registry_enable: false
+gitlab_registry_external_url: "https://gitlab.example.com:4567"
+gitlab_registry_nginx_ssl_certificate: "/etc/gitlab/ssl/gitlab.crt"
+gitlab_registry_nginx_ssl_certificate_key: "/etc/gitlab/ssl/gitlab.key"
