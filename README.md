@@ -1,6 +1,6 @@
 # Ansible Playbook: GitLab Setup
 
-Setup GitLab, a Ruby-based front-end to Git, on any RedHat/CentOS or Debian/Ubuntu linux system. Tested on RHEL 7.7 Maipo, it's documented on [my blog](init.web.id/setup-gitlab-server-with-ansible).
+Setup GitLab, a Ruby-based front-end to Git, on any RedHat/CentOS or Debian/Ubuntu linux system. Tested on RHEL 7.7 Maipo, it's documented on [my blog](https://init.web.id/setup-gitlab-server-with-ansible).
 
 GitLab's default administrator account details are below; be sure to login immediately after installation and change these credentials!
 
